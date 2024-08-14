@@ -1,0 +1,66 @@
+# Configuration for Landsat Data Processing
+
+# General settings
+project_name: "Landsat Satellite Data Analysis"
+version: "1.0"
+
+# Data sources
+data_sources:
+  - name: "Landsat 8 OLI/TIRS"
+    type: "satellite"
+    url: "https://earthexplorer.usgs.gov/"
+    description: "Landsat 8 imagery for land cover and environmental studies."
+    band_urls:
+      - "https://example.com/landsat8/band1"
+      - "https://example.com/landsat8/band2"
+      - "https://example.com/landsat8/band3"
+      # Add more bands as needed
+
+# Processing parameters
+processing:
+  # Resolution options
+  resolution: "30m"  # Options: "15m", "30m", "60m"
+
+  # Filters
+  filters:
+    cloud_coverage: 5  # Maximum cloud coverage percentage to filter
+    date_range:
+      start_date: "2024-01-01"
+      end_date: "2024-12-31"
+    area_of_interest:
+      latitude_min: 34.0
+      latitude_max: 36.0
+      longitude_min: -118.0
+      longitude_max: -116.0
+
+  # Calibration settings
+  calibration:
+    apply_correction: true
+    correction_method: "radiometric"  # Options: "radiometric", "atmospheric"
+
+  # Atmospheric correction parameters
+  atmospheric_correction:
+    method: "LEDAPS"  # Options: "LEDAPS", "QUAC"
+    data_source: "https://example.com/atmospheric_correction_data/"
+
+# Output settings
+output:
+  format: "GeoTIFF"  # Options: "GeoTIFF", "NetCDF", "HDF5"
+  resolution: "30m"  # Desired resolution for output files
+  compression: "lzw"  # Compression type for output files
+
+# Logging settings
+logging:
+  level: "INFO"  # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+  log_file: "landsat_processing.log"
+
+# Advanced settings
+advanced:
+  chunk_size: 1024  # Size of data chunks for processing (in MB)
+  parallel_processing: true  # Enable parallel processing
+  num_threads: 4  # Number of threads for parallel processing
+
+# Metadata settings
+metadata:
+  include: true  # Include metadata in output files
+  format: "XML"  # Metadata format (e.g., XML, JSON)
