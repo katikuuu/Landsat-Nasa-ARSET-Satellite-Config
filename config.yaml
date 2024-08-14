@@ -1,0 +1,50 @@
+# Configuration for NASA ARSET Data Processing
+
+# General settings
+project_name: "NASA ARSET Satellite Data Analysis"
+version: "1.0"
+
+# Data sources
+data_sources:
+  - name: "Landsat 8"
+    type: "satellite"
+    url: "https://example.com/landsat8/"
+    description: "Landsat 8 imagery for various environmental studies."
+  - name: "MODIS"
+    type: "satellite"
+    url: "https://example.com/modis/"
+    description: "MODIS data for global monitoring."
+
+# Processing parameters
+processing:
+  # Resolution options
+  resolution: "30m"  # Options: "10m", "30m", "60m"
+  
+  # Filters
+  filters:
+    cloud_coverage: 10  # Maximum cloud coverage percentage to filter
+    date_range:
+      start_date: "2024-01-01"
+      end_date: "2024-12-31"
+
+  # Calibration settings
+  calibration:
+    apply_correction: true
+    correction_method: "radiometric"  # Options: "radiometric", "atmospheric"
+
+# Output settings
+output:
+  format: "GeoTIFF"  # Options: "GeoTIFF", "NetCDF", "HDF5"
+  resolution: "30m"  # Desired resolution for output files
+  compression: "gzip"  # Compression type for output files
+
+# Logging settings
+logging:
+  level: "INFO"  # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+  log_file: "processing.log"
+
+# Advanced settings
+advanced:
+  chunk_size: 1024  # Size of data chunks for processing (in MB)
+  parallel_processing: true  # Enable parallel processing
+  num_threads: 4  # Number of threads for parallel processing
